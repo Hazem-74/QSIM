@@ -1,0 +1,1413 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>viewer module &mdash; Quantum Optics Simulator 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=2709fde1"></script>
+      <script src="_static/doctools.js?v=9a2dae69"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="test module" href="test.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Quantum Optics Simulator
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">QSim</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="control.html">control module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model.html">model module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test.html">test module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">viewer module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#viewer.BeamSplitter"><code class="docutils literal notranslate"><span class="pre">BeamSplitter</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#viewer.BeamSplitter.get_next_orient"><code class="docutils literal notranslate"><span class="pre">BeamSplitter.get_next_orient()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#viewer.CentralWidget"><code class="docutils literal notranslate"><span class="pre">CentralWidget</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#viewer.CentralWidget.connect_exit_button"><code class="docutils literal notranslate"><span class="pre">CentralWidget.connect_exit_button()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#viewer.CentralWidget.connect_play_button"><code class="docutils literal notranslate"><span class="pre">CentralWidget.connect_play_button()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#viewer.CentralWidget.connect_stop_button"><code class="docutils literal notranslate"><span class="pre">CentralWidget.connect_stop_button()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#viewer.CentralWidget.get_grid_size"><code class="docutils literal notranslate"><span class="pre">CentralWidget.get_grid_size()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#viewer.CentralWidget.get_item_at"><code class="docutils literal notranslate"><span class="pre">CentralWidget.get_item_at()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#viewer.CentralWidget.get_lasers"><code class="docutils literal notranslate"><span class="pre">CentralWidget.get_lasers()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#viewer.CentralWidget.hide_photon"><code class="docutils literal notranslate"><span class="pre">CentralWidget.hide_photon()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#viewer.CentralWidget.move_photon"><code class="docutils literal notranslate"><span class="pre">CentralWidget.move_photon()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#viewer.CentralWidget.show_photon"><code class="docutils literal notranslate"><span class="pre">CentralWidget.show_photon()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#viewer.Detector"><code class="docutils literal notranslate"><span class="pre">Detector</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#viewer.GridArea"><code class="docutils literal notranslate"><span class="pre">GridArea</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#viewer.GridArea.create_grid"><code class="docutils literal notranslate"><span class="pre">GridArea.create_grid()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#viewer.GridArea.get_grid_size"><code class="docutils literal notranslate"><span class="pre">GridArea.get_grid_size()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#viewer.GridArea.get_item_at"><code class="docutils literal notranslate"><span class="pre">GridArea.get_item_at()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#viewer.GridArea.get_items_by_type"><code class="docutils literal notranslate"><span class="pre">GridArea.get_items_by_type()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#viewer.GridArea.get_lasers"><code class="docutils literal notranslate"><span class="pre">GridArea.get_lasers()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#viewer.GridArea.hide_photon"><code class="docutils literal notranslate"><span class="pre">GridArea.hide_photon()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#viewer.GridArea.move_photon"><code class="docutils literal notranslate"><span class="pre">GridArea.move_photon()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#viewer.GridArea.show_photon"><code class="docutils literal notranslate"><span class="pre">GridArea.show_photon()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#viewer.GridCell"><code class="docutils literal notranslate"><span class="pre">GridCell</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#viewer.GridCell.row"><code class="docutils literal notranslate"><span class="pre">GridCell.row</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#viewer.GridCell.col"><code class="docutils literal notranslate"><span class="pre">GridCell.col</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#viewer.GridCell.add_item"><code class="docutils literal notranslate"><span class="pre">GridCell.add_item()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#viewer.GridCell.dragEnterEvent"><code class="docutils literal notranslate"><span class="pre">GridCell.dragEnterEvent()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#viewer.GridCell.dropEvent"><code class="docutils literal notranslate"><span class="pre">GridCell.dropEvent()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#viewer.GridCell.get_item"><code class="docutils literal notranslate"><span class="pre">GridCell.get_item()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#viewer.GridCell.remove_item"><code class="docutils literal notranslate"><span class="pre">GridCell.remove_item()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#viewer.GridItem"><code class="docutils literal notranslate"><span class="pre">GridItem</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#viewer.GridItem.type"><code class="docutils literal notranslate"><span class="pre">GridItem.type</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#viewer.GridItem.get_next_orient"><code class="docutils literal notranslate"><span class="pre">GridItem.get_next_orient()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#viewer.GridItem.mouseMoveEvent"><code class="docutils literal notranslate"><span class="pre">GridItem.mouseMoveEvent()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#viewer.GridItem.rotate"><code class="docutils literal notranslate"><span class="pre">GridItem.rotate()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#viewer.GridWall"><code class="docutils literal notranslate"><span class="pre">GridWall</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#viewer.GridWall.row"><code class="docutils literal notranslate"><span class="pre">GridWall.row</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#viewer.GridWall.col"><code class="docutils literal notranslate"><span class="pre">GridWall.col</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#viewer.HLine"><code class="docutils literal notranslate"><span class="pre">HLine</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#viewer.HSpacer"><code class="docutils literal notranslate"><span class="pre">HSpacer</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#viewer.Laser"><code class="docutils literal notranslate"><span class="pre">Laser</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#viewer.Laser.get_next_orient"><code class="docutils literal notranslate"><span class="pre">Laser.get_next_orient()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#viewer.LeftMenu"><code class="docutils literal notranslate"><span class="pre">LeftMenu</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#viewer.LeftMenu.connect_exit_button"><code class="docutils literal notranslate"><span class="pre">LeftMenu.connect_exit_button()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#viewer.LeftMenu.connect_play_button"><code class="docutils literal notranslate"><span class="pre">LeftMenu.connect_play_button()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#viewer.LeftMenu.connect_stop_button"><code class="docutils literal notranslate"><span class="pre">LeftMenu.connect_stop_button()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#viewer.Mirror"><code class="docutils literal notranslate"><span class="pre">Mirror</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#viewer.Mirror.get_next_orient"><code class="docutils literal notranslate"><span class="pre">Mirror.get_next_orient()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#viewer.Photon"><code class="docutils literal notranslate"><span class="pre">Photon</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#viewer.Photon.move_to_position"><code class="docutils literal notranslate"><span class="pre">Photon.move_to_position()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#viewer.Photon.paintEvent"><code class="docutils literal notranslate"><span class="pre">Photon.paintEvent()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#viewer.PolarBeamSplitter"><code class="docutils literal notranslate"><span class="pre">PolarBeamSplitter</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#viewer.SimulationArea"><code class="docutils literal notranslate"><span class="pre">SimulationArea</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#viewer.SimulationArea.get_grid_size"><code class="docutils literal notranslate"><span class="pre">SimulationArea.get_grid_size()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#viewer.SimulationArea.get_item_at"><code class="docutils literal notranslate"><span class="pre">SimulationArea.get_item_at()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#viewer.SimulationArea.get_lasers"><code class="docutils literal notranslate"><span class="pre">SimulationArea.get_lasers()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#viewer.SimulationArea.hide_photon"><code class="docutils literal notranslate"><span class="pre">SimulationArea.hide_photon()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#viewer.SimulationArea.move_photon"><code class="docutils literal notranslate"><span class="pre">SimulationArea.move_photon()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#viewer.SimulationArea.show_photon"><code class="docutils literal notranslate"><span class="pre">SimulationArea.show_photon()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#viewer.ToolsList"><code class="docutils literal notranslate"><span class="pre">ToolsList</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#viewer.ToolsList.myHeader"><code class="docutils literal notranslate"><span class="pre">ToolsList.myHeader</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#viewer.ToolsList.myContents"><code class="docutils literal notranslate"><span class="pre">ToolsList.myContents</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#viewer.ToolsList.addTool"><code class="docutils literal notranslate"><span class="pre">ToolsList.addTool()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#viewer.ToolsListContents"><code class="docutils literal notranslate"><span class="pre">ToolsListContents</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#viewer.ToolsListContents.addTool"><code class="docutils literal notranslate"><span class="pre">ToolsListContents.addTool()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#viewer.ToolsListHeader"><code class="docutils literal notranslate"><span class="pre">ToolsListHeader</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#viewer.ToolsListsArea"><code class="docutils literal notranslate"><span class="pre">ToolsListsArea</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#viewer.ToolsListsArea.myToolsLists"><code class="docutils literal notranslate"><span class="pre">ToolsListsArea.myToolsLists</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#viewer.ToolsListsArea.addToolsList"><code class="docutils literal notranslate"><span class="pre">ToolsListsArea.addToolsList()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#viewer.Ui_MainWindow"><code class="docutils literal notranslate"><span class="pre">Ui_MainWindow</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#viewer.Ui_MainWindow.connect_exit_button"><code class="docutils literal notranslate"><span class="pre">Ui_MainWindow.connect_exit_button()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#viewer.Ui_MainWindow.connect_play_button"><code class="docutils literal notranslate"><span class="pre">Ui_MainWindow.connect_play_button()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#viewer.Ui_MainWindow.connect_stop_button"><code class="docutils literal notranslate"><span class="pre">Ui_MainWindow.connect_stop_button()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#viewer.Ui_MainWindow.get_grid_size"><code class="docutils literal notranslate"><span class="pre">Ui_MainWindow.get_grid_size()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#viewer.Ui_MainWindow.get_item_at"><code class="docutils literal notranslate"><span class="pre">Ui_MainWindow.get_item_at()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#viewer.Ui_MainWindow.get_lasers"><code class="docutils literal notranslate"><span class="pre">Ui_MainWindow.get_lasers()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#viewer.Ui_MainWindow.hide_photon"><code class="docutils literal notranslate"><span class="pre">Ui_MainWindow.hide_photon()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#viewer.Ui_MainWindow.move_photon"><code class="docutils literal notranslate"><span class="pre">Ui_MainWindow.move_photon()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#viewer.Ui_MainWindow.setupUi"><code class="docutils literal notranslate"><span class="pre">Ui_MainWindow.setupUi()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#viewer.Ui_MainWindow.show_photon"><code class="docutils literal notranslate"><span class="pre">Ui_MainWindow.show_photon()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#viewer.Ui_MainWindow.visualize_vector"><code class="docutils literal notranslate"><span class="pre">Ui_MainWindow.visualize_vector()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#viewer.VLine"><code class="docutils literal notranslate"><span class="pre">VLine</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#viewer.VSpacer"><code class="docutils literal notranslate"><span class="pre">VSpacer</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#viewer.VectorWindow"><code class="docutils literal notranslate"><span class="pre">VectorWindow</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#viewer.rotate_icon"><code class="docutils literal notranslate"><span class="pre">rotate_icon()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#viewer.tool"><code class="docutils literal notranslate"><span class="pre">tool</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#viewer.tool.compType"><code class="docutils literal notranslate"><span class="pre">tool.compType</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#viewer.tool.mouseMoveEvent"><code class="docutils literal notranslate"><span class="pre">tool.mouseMoveEvent()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Quantum Optics Simulator</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="modules.html">QSim</a></li>
+      <li class="breadcrumb-item active">viewer module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/viewer.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-viewer">
+<span id="viewer-module"></span><h1>viewer module<a class="headerlink" href="#module-viewer" title="Link to this heading"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="viewer.BeamSplitter">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viewer.</span></span><span class="sig-name descname"><span class="pre">BeamSplitter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viewer.BeamSplitter" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#viewer.GridItem" title="viewer.GridItem"><code class="xref py py-class docutils literal notranslate"><span class="pre">GridItem</span></code></a></p>
+<p>Represents a beamsplitter item within the grid.</p>
+<p>Inherits from <code class="docutils literal notranslate"><span class="pre">GridItem</span></code> and extends functionality to achieve the appearance and behavior of a beamsplitter.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="viewer.BeamSplitter.get_next_orient">
+<span class="sig-name descname"><span class="pre">get_next_orient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">orientation</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viewer.BeamSplitter.get_next_orient" title="Link to this definition"></a></dt>
+<dd><p>DEPRECATED</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viewer.CentralWidget">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viewer.</span></span><span class="sig-name descname"><span class="pre">CentralWidget</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viewer.CentralWidget" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">QWidget</span></code></p>
+<p>A class for the central widget of the application’s window. Holds the <a class="reference internal" href="#viewer.LeftMenu" title="viewer.LeftMenu"><code class="xref py py-class docutils literal notranslate"><span class="pre">LeftMenu</span></code></a>, <a class="reference internal" href="#viewer.SimulationArea" title="viewer.SimulationArea"><code class="xref py py-class docutils literal notranslate"><span class="pre">SimulationArea</span></code></a> and all of their contents.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Variables<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>leftMenu</strong> (<a class="reference internal" href="#viewer.LeftMenu" title="viewer.LeftMenu"><em>LeftMenu</em></a>) – The left menu of the application, containing control buttons and tools lists.</p></li>
+<li><p><strong>simulationArea</strong> (<a class="reference internal" href="#viewer.SimulationArea" title="viewer.SimulationArea"><em>SimulationArea</em></a>) – The simulation area containing the grid and all grid items.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="viewer.CentralWidget.connect_exit_button">
+<span class="sig-name descname"><span class="pre">connect_exit_button</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#viewer.CentralWidget.connect_exit_button" title="Link to this definition"></a></dt>
+<dd><p>Connects a function to the exit button to be called when the button is clicked.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>func</strong> (<em>Callable</em>) – A function to be called when the button is clicked.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>This function does not return anything.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viewer.CentralWidget.connect_play_button">
+<span class="sig-name descname"><span class="pre">connect_play_button</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#viewer.CentralWidget.connect_play_button" title="Link to this definition"></a></dt>
+<dd><p>Connects a function to the play button to be called when the button is clicked.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>func</strong> (<em>Callable</em>) – A function to be called when the button is clicked.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>This function does not return anything.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viewer.CentralWidget.connect_stop_button">
+<span class="sig-name descname"><span class="pre">connect_stop_button</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#viewer.CentralWidget.connect_stop_button" title="Link to this definition"></a></dt>
+<dd><p>Connects a function to stop button to be called when the button is clicked.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>func</strong> (<em>Callable</em>) – A function to be called when the button is clicked.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>This function does not return anything.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viewer.CentralWidget.get_grid_size">
+<span class="sig-name descname"><span class="pre">get_grid_size</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#viewer.CentralWidget.get_grid_size" title="Link to this definition"></a></dt>
+<dd><p>Getter method for the size of the grid.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Returns a tuple of grid size in the form (number of rows, number of columns).</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>tuple[int, int]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viewer.CentralWidget.get_item_at">
+<span class="sig-name descname"><span class="pre">get_item_at</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">row</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">col</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#viewer.GridItem" title="viewer.GridItem"><span class="pre">GridItem</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#viewer.CentralWidget.get_item_at" title="Link to this definition"></a></dt>
+<dd><p>Returns the item stored in the cell at the location (row, col) within the grid.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>row</strong> (<em>int</em>) – The row number of the target cell.</p></li>
+<li><p><strong>col</strong> (<em>int</em>) – The column number of the target cell.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Returns the item held by the cell if it exists, otherwise returns None.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#viewer.GridItem" title="viewer.GridItem">GridItem</a> | None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viewer.CentralWidget.get_lasers">
+<span class="sig-name descname"><span class="pre">get_lasers</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="headerlink" href="#viewer.CentralWidget.get_lasers" title="Link to this definition"></a></dt>
+<dd><p>Returns a list of all instances of <a class="reference internal" href="#viewer.Laser" title="viewer.Laser"><code class="xref py py-class docutils literal notranslate"><span class="pre">Laser</span></code></a> objects within the grid.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Returns a list of laser objects. In case no lasers exist, returns an empty list.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viewer.CentralWidget.hide_photon">
+<span class="sig-name descname"><span class="pre">hide_photon</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#viewer.CentralWidget.hide_photon" title="Link to this definition"></a></dt>
+<dd><p>Hides the photon.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>This function does not return anything.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viewer.CentralWidget.move_photon">
+<span class="sig-name descname"><span class="pre">move_photon</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start_cell</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_cell</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">orientation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#viewer.CentralWidget.move_photon" title="Link to this definition"></a></dt>
+<dd><p>Shows animation of a photon moving from a starting grid cell to another grid cell then hides it again.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>start_cell</strong> (<em>tuple</em><em>[</em><em>int</em><em>, </em><em>int</em><em>]</em>) – The cell position that the photon should start at, given in the form of (row, column).</p></li>
+<li><p><strong>end_cell</strong> (<em>tuple</em><em>[</em><em>int</em><em>, </em><em>int</em><em>]</em>) – The cell position that the photon should end at, given in the form of (row, column).</p></li>
+<li><p><strong>orientation</strong> (<em>int</em>) – The orientation of the photon’s movement (right, left, up, down). Used to make the photon’s start and end positions appear at the edge of the cell rather than at its center.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>This function does not return anything.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viewer.CentralWidget.show_photon">
+<span class="sig-name descname"><span class="pre">show_photon</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#viewer.CentralWidget.show_photon" title="Link to this definition"></a></dt>
+<dd><p>Shows the photon on the screen.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>This method does not return anything.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viewer.Detector">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viewer.</span></span><span class="sig-name descname"><span class="pre">Detector</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viewer.Detector" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#viewer.GridItem" title="viewer.GridItem"><code class="xref py py-class docutils literal notranslate"><span class="pre">GridItem</span></code></a></p>
+<p>Represents a detector item within the grid.</p>
+<p>Inherits from <code class="docutils literal notranslate"><span class="pre">GridItem</span></code> and extends functionality to achieve the appearance and behavior of a detector.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viewer.GridArea">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viewer.</span></span><span class="sig-name descname"><span class="pre">GridArea</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viewer.GridArea" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">QWidget</span></code></p>
+<p>The entire grid area that holds all instances of <a class="reference internal" href="#viewer.GridCell" title="viewer.GridCell"><code class="xref py py-class docutils literal notranslate"><span class="pre">GridCell</span></code></a> objects.</p>
+<p>Inherits from the generic class <code class="xref py py-class docutils literal notranslate"><span class="pre">QWidget</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Variables<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>rows</strong> (<em>int</em>) – The total number of rows of cells.</p></li>
+<li><p><strong>cols</strong> (<em>int</em>) – The total number of columns of cells.</p></li>
+<li><p><strong>photon</strong> (<a class="reference internal" href="#viewer.Photon" title="viewer.Photon"><em>Photon</em></a>) – A photon that is used for visualizing simulations.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="viewer.GridArea.create_grid">
+<span class="sig-name descname"><span class="pre">create_grid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rows</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cols</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#viewer.GridArea.create_grid" title="Link to this definition"></a></dt>
+<dd><p>Fills <a class="reference internal" href="#viewer.GridArea" title="viewer.GridArea"><code class="xref py py-class docutils literal notranslate"><span class="pre">GridArea</span></code></a> with <a class="reference internal" href="#viewer.GridCell" title="viewer.GridCell"><code class="xref py py-class docutils literal notranslate"><span class="pre">GridCell</span></code></a> instances.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>rows</strong> (<em>int</em>) – The total number of rows, which is the number of cells per column.</p></li>
+<li><p><strong>cols</strong> (<em>int</em>) – The total number of columns, which is the number of cells per row.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>This method does not return anything.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viewer.GridArea.get_grid_size">
+<span class="sig-name descname"><span class="pre">get_grid_size</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#viewer.GridArea.get_grid_size" title="Link to this definition"></a></dt>
+<dd><p>Getter method for the size of the grid.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Returns a tuple of grid size in the form (number of rows, number of columns).</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>tuple[int, int]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viewer.GridArea.get_item_at">
+<span class="sig-name descname"><span class="pre">get_item_at</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">row</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">col</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#viewer.GridItem" title="viewer.GridItem"><span class="pre">GridItem</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#viewer.GridArea.get_item_at" title="Link to this definition"></a></dt>
+<dd><p>Returns the item stored in the cell at the location (row, col) within the grid.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>row</strong> (<em>int</em>) – The row number of the target cell.</p></li>
+<li><p><strong>col</strong> (<em>int</em>) – The column number of the target cell.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Returns the item held by the cell if it exists, otherwise returns None.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#viewer.GridItem" title="viewer.GridItem">GridItem</a> | None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viewer.GridArea.get_items_by_type">
+<span class="sig-name descname"><span class="pre">get_items_by_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">type</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="headerlink" href="#viewer.GridArea.get_items_by_type" title="Link to this definition"></a></dt>
+<dd><p>Returns a list of all items within the grid of a given type.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>type</strong> (<em>type</em>) – The type of items needed to be returned, given in the form of class names (e.g. Laser, Mirror, etc.)</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Returns a list of items of the given type. If no items of such type exist, returns an empty list.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viewer.GridArea.get_lasers">
+<span class="sig-name descname"><span class="pre">get_lasers</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="headerlink" href="#viewer.GridArea.get_lasers" title="Link to this definition"></a></dt>
+<dd><p>Returns a list of all instances of <a class="reference internal" href="#viewer.Laser" title="viewer.Laser"><code class="xref py py-class docutils literal notranslate"><span class="pre">Laser</span></code></a> objects within the grid.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Returns a list of laser objects. In case no lasers exist, returns an empty list.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viewer.GridArea.hide_photon">
+<span class="sig-name descname"><span class="pre">hide_photon</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#viewer.GridArea.hide_photon" title="Link to this definition"></a></dt>
+<dd><p>Hides the photon.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>This function does not return anything.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viewer.GridArea.move_photon">
+<span class="sig-name descname"><span class="pre">move_photon</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start_cell</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_cell</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">orientation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#viewer.GridArea.move_photon" title="Link to this definition"></a></dt>
+<dd><p>Shows animation of a photon moving from a starting grid cell to another grid cell then hides it again.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>start_cell</strong> (<em>tuple</em><em>[</em><em>int</em><em>, </em><em>int</em><em>]</em>) – The cell position that the photon should start at, given in the form of (row, column).</p></li>
+<li><p><strong>end_cell</strong> (<em>tuple</em><em>[</em><em>int</em><em>, </em><em>int</em><em>]</em>) – The cell position that the photon should end at, given in the form of (row, column).</p></li>
+<li><p><strong>orientation</strong> (<em>int</em>) – The orientation of the photon’s movement (right, left, up, down). Used to make the photon’s start and end positions appear at the edge of the cell rather than at its center.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>This function does not return anything.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viewer.GridArea.show_photon">
+<span class="sig-name descname"><span class="pre">show_photon</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#viewer.GridArea.show_photon" title="Link to this definition"></a></dt>
+<dd><p>Shows the photon on the screen.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>This method does not return anything.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viewer.GridCell">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viewer.</span></span><span class="sig-name descname"><span class="pre">GridCell</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">row</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">col</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viewer.GridCell" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">QFrame</span></code></p>
+<p>A single cell within the simulation grid. Holds items that inherit from <code class="docutils literal notranslate"><span class="pre">GridItem</span></code> (e.g. Laser, Beamsplitter, etc.).</p>
+<p>Inherits from <code class="docutils literal notranslate"><span class="pre">QFrame</span></code>.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viewer.GridCell.row">
+<span class="sig-name descname"><span class="pre">row</span></span><a class="headerlink" href="#viewer.GridCell.row" title="Link to this definition"></a></dt>
+<dd><p>stores the row of the cell within the grid.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viewer.GridCell.col">
+<span class="sig-name descname"><span class="pre">col</span></span><a class="headerlink" href="#viewer.GridCell.col" title="Link to this definition"></a></dt>
+<dd><p>stores the col of the cell within the grid.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viewer.GridCell.add_item">
+<span class="sig-name descname"><span class="pre">add_item</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">item</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#viewer.GridItem" title="viewer.GridItem"><span class="pre">GridItem</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#viewer.GridCell.add_item" title="Link to this definition"></a></dt>
+<dd><p>Adds a <code class="docutils literal notranslate"><span class="pre">GridItem</span></code> (or one of its children) to the cell.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>item</strong> (<a class="reference internal" href="#viewer.GridItem" title="viewer.GridItem"><em>GridItem</em></a>) – The item to be added to the cell.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>This method does not return anything.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viewer.GridCell.dragEnterEvent">
+<span class="sig-name descname"><span class="pre">dragEnterEvent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">QDragEnterEvent</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#viewer.GridCell.dragEnterEvent" title="Link to this definition"></a></dt>
+<dd><p>Overrides the drag event handling of the parent class <code class="docutils literal notranslate"><span class="pre">QFrame</span></code> to enable dragging and dropping tools on the cell.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>event</strong> (<em>QDragEnterEvent</em>) – Contains information about the drag event.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>This method does not return anything.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viewer.GridCell.dropEvent">
+<span class="sig-name descname"><span class="pre">dropEvent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">QDropEvent</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#viewer.GridCell.dropEvent" title="Link to this definition"></a></dt>
+<dd><p>Adds or replaces a new item (e.g. Laser, beamsplitter, etc.) to the current instance of <code class="docutils literal notranslate"><span class="pre">GridCell</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>event</strong> (<em>QDropEvent</em>) – Holds information about the type of componented to be added.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>This method does not return anything.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viewer.GridCell.get_item">
+<span class="sig-name descname"><span class="pre">get_item</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#viewer.GridItem" title="viewer.GridItem"><span class="pre">GridItem</span></a></span></span><a class="headerlink" href="#viewer.GridCell.get_item" title="Link to this definition"></a></dt>
+<dd><p>A getter method for the grid item that is currently held by the cell.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A <code class="docutils literal notranslate"><span class="pre">GridItem</span></code> (or one of its children) if the cell holds one, otherwise returns <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#viewer.GridItem" title="viewer.GridItem">GridItem</a> | None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viewer.GridCell.remove_item">
+<span class="sig-name descname"><span class="pre">remove_item</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#viewer.GridCell.remove_item" title="Link to this definition"></a></dt>
+<dd><p>Removes the current <code class="docutils literal notranslate"><span class="pre">GridItem</span></code> held by the cell, if any.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>This method does not return anything.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viewer.GridItem">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viewer.</span></span><span class="sig-name descname"><span class="pre">GridItem</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">type</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viewer.GridItem" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">QPushButton</span></code></p>
+<p>A generic parent class for all items that could be included in the grid (e.g. Laser, Beamsplitter, Mirror, etc.).</p>
+<p>Inherits from <code class="docutils literal notranslate"><span class="pre">QPushButton</span></code> to obtain button behavior.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viewer.GridItem.type">
+<span class="sig-name descname"><span class="pre">type</span></span><a class="headerlink" href="#viewer.GridItem.type" title="Link to this definition"></a></dt>
+<dd><p>The type of this grid item (e.g. Laser, Beamsplitter, Mirror, etc.).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viewer.GridItem.get_next_orient">
+<span class="sig-name descname"><span class="pre">get_next_orient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">orientation</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="headerlink" href="#viewer.GridItem.get_next_orient" title="Link to this definition"></a></dt>
+<dd><p>DEPRECATED</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viewer.GridItem.mouseMoveEvent">
+<span class="sig-name descname"><span class="pre">mouseMoveEvent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">QMouseEvent</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viewer.GridItem.mouseMoveEvent" title="Link to this definition"></a></dt>
+<dd><p>Overrides the mouse movement event inherited from <code class="docutils literal notranslate"><span class="pre">QPushButton</span></code> to achieve drag and drop functionality.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>event</strong> (<em>QMouseEvent</em>) – Provides information about a mouse movement event, such as the position of the mouse pointer, button states, and modifiers (e.g., Shift or Ctrl keys).</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>This method does not return anything.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viewer.GridItem.rotate">
+<span class="sig-name descname"><span class="pre">rotate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#viewer.GridItem.rotate" title="Link to this definition"></a></dt>
+<dd><p>Rotates the item by 45 degrees on the screen.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>This method does not return anything.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viewer.GridWall">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viewer.</span></span><span class="sig-name descname"><span class="pre">GridWall</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">row</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">col</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viewer.GridWall" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#viewer.GridItem" title="viewer.GridItem"><code class="xref py py-class docutils literal notranslate"><span class="pre">GridItem</span></code></a></p>
+<p>Represents an item that is out of bounds of the grid.</p>
+<p>Although not an intuitive <code class="docutils literal notranslate"><span class="pre">GridItem</span></code>, it helps in the backend logic.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viewer.GridWall.row">
+<span class="sig-name descname"><span class="pre">row</span></span><a class="headerlink" href="#viewer.GridWall.row" title="Link to this definition"></a></dt>
+<dd><p>The row number of <code class="docutils literal notranslate"><span class="pre">GridWall</span></code> within the grid.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viewer.GridWall.col">
+<span class="sig-name descname"><span class="pre">col</span></span><a class="headerlink" href="#viewer.GridWall.col" title="Link to this definition"></a></dt>
+<dd><p>The column number of <code class="docutils literal notranslate"><span class="pre">GridWall</span></code> within the grid.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viewer.HLine">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viewer.</span></span><span class="sig-name descname"><span class="pre">HLine</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viewer.HLine" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">QFrame</span></code></p>
+<p>A line that spans the entire window horizontally, regardless of the window’s size.</p>
+<p>This class inherits from <cite>QFrame</cite> and modifies the properties to produce a line.
+It adds to extra attributes or methods to those originally inherited from <cite>QFrame</cite>.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viewer.HSpacer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viewer.</span></span><span class="sig-name descname"><span class="pre">HSpacer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viewer.HSpacer" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">QSpacerItem</span></code></p>
+<p>A horizontal spacer that extends maximally within a widget.</p>
+<p>It takes up a maximal horizontal space, aligning items before it to the leftmost of the container and items after it to the rightmost of the container.
+It inherits from <code class="docutils literal notranslate"><span class="pre">QSpacerItem</span></code> and adds no extra attributes or methods to it.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viewer.Laser">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viewer.</span></span><span class="sig-name descname"><span class="pre">Laser</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viewer.Laser" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#viewer.GridItem" title="viewer.GridItem"><code class="xref py py-class docutils literal notranslate"><span class="pre">GridItem</span></code></a></p>
+<p>Represents a laser item within the grid.</p>
+<p>Inherits from <code class="docutils literal notranslate"><span class="pre">GridItem</span></code> and extends functionality to achieve the appearance and behavior of a laser.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="viewer.Laser.get_next_orient">
+<span class="sig-name descname"><span class="pre">get_next_orient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">orientation</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="headerlink" href="#viewer.Laser.get_next_orient" title="Link to this definition"></a></dt>
+<dd><p>DEPRECATED</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viewer.LeftMenu">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viewer.</span></span><span class="sig-name descname"><span class="pre">LeftMenu</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viewer.LeftMenu" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">QWidget</span></code></p>
+<p>The left menu area of the application window.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Variables<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>playButton</strong> (<em>QPushButton</em>) – A button to start the simulation.</p>
+</dd>
+</dl>
+<p>:ivar stopButton:A button to stop the simulation.
+:vartype stopButton: QPushButton</p>
+<dl class="field-list simple">
+<dt class="field-odd">Variables<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>exitButton</strong> (<em>QPushButton</em>) – A button to exit the application.</p></li>
+<li><p><strong>toolsArea</strong> (<a class="reference internal" href="#viewer.ToolsListsArea" title="viewer.ToolsListsArea"><em>ToolsListsArea</em></a>) – A tools area to hold the draggable tools.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="viewer.LeftMenu.connect_exit_button">
+<span class="sig-name descname"><span class="pre">connect_exit_button</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#viewer.LeftMenu.connect_exit_button" title="Link to this definition"></a></dt>
+<dd><p>Connects a function to <code class="xref py py-attr docutils literal notranslate"><span class="pre">exitButton</span></code> to be called when the button is clicked.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>func</strong> (<em>Callable</em>) – A function to be called when the button is clicked.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>This function does not return anything.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viewer.LeftMenu.connect_play_button">
+<span class="sig-name descname"><span class="pre">connect_play_button</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#viewer.LeftMenu.connect_play_button" title="Link to this definition"></a></dt>
+<dd><p>Connects a function to <code class="xref py py-attr docutils literal notranslate"><span class="pre">playButton</span></code> to be called when the button is clicked.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>func</strong> (<em>Callable</em>) – A function to be called when the button is clicked.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>This function does not return anything.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viewer.LeftMenu.connect_stop_button">
+<span class="sig-name descname"><span class="pre">connect_stop_button</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#viewer.LeftMenu.connect_stop_button" title="Link to this definition"></a></dt>
+<dd><p>Connects a function to <code class="xref py py-attr docutils literal notranslate"><span class="pre">stopButton</span></code> to be called when the button is clicked.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>func</strong> (<em>Callable</em>) – A function to be called when the button is clicked.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>This function does not return anything.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viewer.Mirror">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viewer.</span></span><span class="sig-name descname"><span class="pre">Mirror</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viewer.Mirror" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#viewer.GridItem" title="viewer.GridItem"><code class="xref py py-class docutils literal notranslate"><span class="pre">GridItem</span></code></a></p>
+<p>Represents a mirror item within the grid.</p>
+<p>Inherits from <code class="docutils literal notranslate"><span class="pre">GridItem</span></code> and extends functionality to achieve the appearance and behavior of a mirror.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="viewer.Mirror.get_next_orient">
+<span class="sig-name descname"><span class="pre">get_next_orient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">orientation</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viewer.Mirror.get_next_orient" title="Link to this definition"></a></dt>
+<dd><p>DEPRECATED</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viewer.Photon">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viewer.</span></span><span class="sig-name descname"><span class="pre">Photon</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viewer.Photon" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">QWidget</span></code></p>
+<p>Appears as a red dot on the screen to indicate a photon.</p>
+<p>Inherits from <code class="docutils literal notranslate"><span class="pre">QWidget</span></code> and overrides its properties to achieve the desired appearance.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="viewer.Photon.move_to_position">
+<span class="sig-name descname"><span class="pre">move_to_position</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start_pos</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_pos</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">duration</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1000</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#viewer.Photon.move_to_position" title="Link to this definition"></a></dt>
+<dd><p>Simulates movement of a photon between two positions on the grid.
+The starting and ending positions are given in the form of the row and column within the grid.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>start_pos</strong> (<em>tuple</em><em>[</em><em>int</em><em>, </em><em>int</em><em>]</em>) – the position that the photon path should start at. this is a tuple of two integers representing the row and column of the position.</p></li>
+<li><p><strong>end_pos</strong> (<em>tuple</em><em>[</em><em>int</em><em>, </em><em>int</em><em>]</em>) – the position that the photon’s path should end at.</p></li>
+<li><p><strong>duration</strong> (<em>int</em>) – The duration of the movement event in milliseconds.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viewer.Photon.paintEvent">
+<span class="sig-name descname"><span class="pre">paintEvent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">QPaintEvent</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#viewer.Photon.paintEvent" title="Link to this definition"></a></dt>
+<dd><p>Changes the <code class="docutils literal notranslate"><span class="pre">paintEvent</span></code> of <code class="docutils literal notranslate"><span class="pre">Photon</span></code> so it appears as a red dot on the screen.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>event</strong> (<em>QPaintEvent</em>) – Provides information about the repainting request.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viewer.PolarBeamSplitter">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viewer.</span></span><span class="sig-name descname"><span class="pre">PolarBeamSplitter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viewer.PolarBeamSplitter" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#viewer.BeamSplitter" title="viewer.BeamSplitter"><code class="xref py py-class docutils literal notranslate"><span class="pre">BeamSplitter</span></code></a></p>
+<p>Represents a polarizing beamsplitter item within the grid.</p>
+<p>Inherits from <code class="docutils literal notranslate"><span class="pre">GridItem</span></code> and extends functionality to achieve the appearance and behavior of a polarizing beamsplitter.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viewer.SimulationArea">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viewer.</span></span><span class="sig-name descname"><span class="pre">SimulationArea</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viewer.SimulationArea" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">QScrollArea</span></code></p>
+<p>The entire simulation area, including <a class="reference internal" href="#viewer.GridArea" title="viewer.GridArea"><code class="xref py py-class docutils literal notranslate"><span class="pre">GridArea</span></code></a> and a margin around it.</p>
+<p>Inherits from <code class="xref py py-class docutils literal notranslate"><span class="pre">QScrollArea</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Variables<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>gridArea</strong> (<a class="reference internal" href="#viewer.GridArea" title="viewer.GridArea"><em>GridArea</em></a>) – The entire grid area within the simulation area.</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="viewer.SimulationArea.get_grid_size">
+<span class="sig-name descname"><span class="pre">get_grid_size</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#viewer.SimulationArea.get_grid_size" title="Link to this definition"></a></dt>
+<dd><p>Getter method for the size of the grid.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Returns a tuple of grid size in the form (number of rows, number of columns).</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>tuple[int, int]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viewer.SimulationArea.get_item_at">
+<span class="sig-name descname"><span class="pre">get_item_at</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">row</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">col</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#viewer.GridItem" title="viewer.GridItem"><span class="pre">GridItem</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#viewer.SimulationArea.get_item_at" title="Link to this definition"></a></dt>
+<dd><p>Returns the item stored in the cell at the location (row, col) within the simulation area’s grid.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>row</strong> (<em>int</em>) – The row number of the target cell.</p></li>
+<li><p><strong>col</strong> (<em>int</em>) – The column number of the target cell.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Returns the item held by the cell if it exists, otherwise returns None.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#viewer.GridItem" title="viewer.GridItem">GridItem</a> | None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viewer.SimulationArea.get_lasers">
+<span class="sig-name descname"><span class="pre">get_lasers</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#viewer.SimulationArea.get_lasers" title="Link to this definition"></a></dt>
+<dd><p>Returns a list of all instances of <a class="reference internal" href="#viewer.Laser" title="viewer.Laser"><code class="xref py py-class docutils literal notranslate"><span class="pre">Laser</span></code></a> objects within the grid.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Returns a list of laser objects. In case no lasers exist, returns an empty list.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viewer.SimulationArea.hide_photon">
+<span class="sig-name descname"><span class="pre">hide_photon</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#viewer.SimulationArea.hide_photon" title="Link to this definition"></a></dt>
+<dd><p>Hides the photon.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>This function does not return anything.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viewer.SimulationArea.move_photon">
+<span class="sig-name descname"><span class="pre">move_photon</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start_cell</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_cell</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">orientation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#viewer.SimulationArea.move_photon" title="Link to this definition"></a></dt>
+<dd><p>Shows animation of a photon moving from a starting grid cell to another grid cell then hides it again.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>start_cell</strong> (<em>tuple</em><em>[</em><em>int</em><em>, </em><em>int</em><em>]</em>) – The cell position that the photon should start at, given in the form of (row, column).</p></li>
+<li><p><strong>end_cell</strong> (<em>tuple</em><em>[</em><em>int</em><em>, </em><em>int</em><em>]</em>) – The cell position that the photon should end at, given in the form of (row, column).</p></li>
+<li><p><strong>orientation</strong> (<em>int</em>) – The orientation of the photon’s movement (right, left, up, down). Used to make the photon’s start and end positions appear at the edge of the cell rather than at its center.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>This function does not return anything.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viewer.SimulationArea.show_photon">
+<span class="sig-name descname"><span class="pre">show_photon</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#viewer.SimulationArea.show_photon" title="Link to this definition"></a></dt>
+<dd><p>Shows the photon on the screen.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>This method does not return anything.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viewer.ToolsList">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viewer.</span></span><span class="sig-name descname"><span class="pre">ToolsList</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">headerText</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viewer.ToolsList" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">QFrame</span></code></p>
+<p>A tools list that contains a group of tools along with a header title for the group.</p>
+<p>Inherits from <code class="docutils literal notranslate"><span class="pre">QFrame</span></code>.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viewer.ToolsList.myHeader">
+<span class="sig-name descname"><span class="pre">myHeader</span></span><a class="headerlink" href="#viewer.ToolsList.myHeader" title="Link to this definition"></a></dt>
+<dd><p>The header of the tools list. Displays the title.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#viewer.ToolsListHeader" title="viewer.ToolsListHeader">ToolsListHeader</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viewer.ToolsList.myContents">
+<span class="sig-name descname"><span class="pre">myContents</span></span><a class="headerlink" href="#viewer.ToolsList.myContents" title="Link to this definition"></a></dt>
+<dd><p>The actual contents of the list with is a list of <code class="docutils literal notranslate"><span class="pre">tool</span></code> objects.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#viewer.ToolsListContents" title="viewer.ToolsListContents">ToolsListContents</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viewer.ToolsList.addTool">
+<span class="sig-name descname"><span class="pre">addTool</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#viewer.ToolsList.addTool" title="Link to this definition"></a></dt>
+<dd><p>Adds a tool to the list.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>type</strong> (<em>str</em>) – A string indicatin the type of the tool to be added.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>This function does not return anything.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viewer.ToolsListContents">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viewer.</span></span><span class="sig-name descname"><span class="pre">ToolsListContents</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viewer.ToolsListContents" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">QWidget</span></code></p>
+<p>A container that carries tools in a sidebar’s list of tools.</p>
+<p>Inherits from the generic <code class="docutils literal notranslate"><span class="pre">QWidget</span></code>.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="viewer.ToolsListContents.addTool">
+<span class="sig-name descname"><span class="pre">addTool</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">compType</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#viewer.ToolsListContents.addTool" title="Link to this definition"></a></dt>
+<dd><p>Adds a tool to the tools list.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>compType</strong> (<em>str</em>) – The type of the component the tool represents.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>This function does not return anything.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viewer.ToolsListHeader">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viewer.</span></span><span class="sig-name descname"><span class="pre">ToolsListHeader</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">headerText</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viewer.ToolsListHeader" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">QLabel</span></code></p>
+<p>The header title of the tools list.</p>
+<p>Inherits from <code class="docutils literal notranslate"><span class="pre">QLabel</span></code> and modifies attributes to achieve desired appearance properties.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viewer.ToolsListsArea">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viewer.</span></span><span class="sig-name descname"><span class="pre">ToolsListsArea</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viewer.ToolsListsArea" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">QScrollArea</span></code></p>
+<p>This is the entire area of tools lists within the sidebar.</p>
+<p>Contains several lists of tools (<code class="docutils literal notranslate"><span class="pre">ToolsList</span></code>), each with a specific header to give a title to the group of tools within the list.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viewer.ToolsListsArea.myToolsLists">
+<span class="sig-name descname"><span class="pre">myToolsLists</span></span><a class="headerlink" href="#viewer.ToolsListsArea.myToolsLists" title="Link to this definition"></a></dt>
+<dd><p>A list of all <code class="docutils literal notranslate"><span class="pre">ToolsList</span></code> objects included within the tools list area.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viewer.ToolsListsArea.addToolsList">
+<span class="sig-name descname"><span class="pre">addToolsList</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">newToolsList</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#viewer.ToolsList" title="viewer.ToolsList"><span class="pre">ToolsList</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#viewer.ToolsListsArea.addToolsList" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viewer.Ui_MainWindow">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viewer.</span></span><span class="sig-name descname"><span class="pre">Ui_MainWindow</span></span><a class="headerlink" href="#viewer.Ui_MainWindow" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>The main UI window class, holding all UI components of the application.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Variables<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>centralWidget</strong> (<a class="reference internal" href="#viewer.CentralWidget" title="viewer.CentralWidget"><em>CentralWidget</em></a>) – The application’s central widget, holding all other components within the window.</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="viewer.Ui_MainWindow.connect_exit_button">
+<span class="sig-name descname"><span class="pre">connect_exit_button</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#viewer.Ui_MainWindow.connect_exit_button" title="Link to this definition"></a></dt>
+<dd><p>Connects a function to the exit button to be called when the button is clicked.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>func</strong> (<em>Callable</em>) – A function to be called when the button is clicked.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>This function does not return anything.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viewer.Ui_MainWindow.connect_play_button">
+<span class="sig-name descname"><span class="pre">connect_play_button</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#viewer.Ui_MainWindow.connect_play_button" title="Link to this definition"></a></dt>
+<dd><p>Connects a function to <code class="xref py py-attr docutils literal notranslate"><span class="pre">playButton</span></code> to be called when the button is clicked.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>func</strong> (<em>Callable</em>) – A function to be called when the button is clicked.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>This function does not return anything.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viewer.Ui_MainWindow.connect_stop_button">
+<span class="sig-name descname"><span class="pre">connect_stop_button</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#viewer.Ui_MainWindow.connect_stop_button" title="Link to this definition"></a></dt>
+<dd><p>Connects a function to stop button to be called when the button is clicked.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>func</strong> (<em>Callable</em>) – A function to be called when the button is clicked.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>This function does not return anything.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viewer.Ui_MainWindow.get_grid_size">
+<span class="sig-name descname"><span class="pre">get_grid_size</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#viewer.Ui_MainWindow.get_grid_size" title="Link to this definition"></a></dt>
+<dd><p>Getter method for the size of the grid.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Returns a tuple of grid size in the form (number of rows, number of columns).</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>tuple[int, int]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viewer.Ui_MainWindow.get_item_at">
+<span class="sig-name descname"><span class="pre">get_item_at</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">row</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">col</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#viewer.GridItem" title="viewer.GridItem"><span class="pre">GridItem</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#viewer.Ui_MainWindow.get_item_at" title="Link to this definition"></a></dt>
+<dd><p>Returns the item stored in the cell at the location (row, col) within the grid.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>row</strong> (<em>int</em>) – The row number of the target cell.</p></li>
+<li><p><strong>col</strong> (<em>int</em>) – The column number of the target cell.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Returns the item held by the cell if it exists, otherwise returns None.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#viewer.GridItem" title="viewer.GridItem">GridItem</a> | None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viewer.Ui_MainWindow.get_lasers">
+<span class="sig-name descname"><span class="pre">get_lasers</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="headerlink" href="#viewer.Ui_MainWindow.get_lasers" title="Link to this definition"></a></dt>
+<dd><p>Returns a list of all instances of <a class="reference internal" href="#viewer.Laser" title="viewer.Laser"><code class="xref py py-class docutils literal notranslate"><span class="pre">Laser</span></code></a> objects within the grid.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Returns a list of laser objects. In case no lasers exist, returns an empty list.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viewer.Ui_MainWindow.hide_photon">
+<span class="sig-name descname"><span class="pre">hide_photon</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#viewer.Ui_MainWindow.hide_photon" title="Link to this definition"></a></dt>
+<dd><p>Hides the photon.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>This function does not return anything.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viewer.Ui_MainWindow.move_photon">
+<span class="sig-name descname"><span class="pre">move_photon</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start_cell</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_cell</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">orientation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#viewer.Ui_MainWindow.move_photon" title="Link to this definition"></a></dt>
+<dd><p>Shows animation of a photon moving from a starting grid cell to another grid cell then hides it again.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>start_cell</strong> (<em>tuple</em><em>[</em><em>int</em><em>, </em><em>int</em><em>]</em>) – The cell position that the photon should start at, given in the form of (row, column).</p></li>
+<li><p><strong>end_cell</strong> (<em>tuple</em><em>[</em><em>int</em><em>, </em><em>int</em><em>]</em>) – The cell position that the photon should end at, given in the form of (row, column).</p></li>
+<li><p><strong>orientation</strong> (<em>int</em>) – The orientation of the photon’s movement (right, left, up, down). Used to make the photon’s start and end positions appear at the edge of the cell rather than at its center.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>This function does not return anything.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viewer.Ui_MainWindow.setupUi">
+<span class="sig-name descname"><span class="pre">setupUi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">MainWindow</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">QMainWindow</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#viewer.Ui_MainWindow.setupUi" title="Link to this definition"></a></dt>
+<dd><p>Sets up the UI window and all of of its components, controlling them during the lifetime of the application.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>MainWindow</strong> (<em>QMainWindow</em>) – The mainwindow controller class, responsible for orchestrating the entire application logic.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>This method does not return anything.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viewer.Ui_MainWindow.show_photon">
+<span class="sig-name descname"><span class="pre">show_photon</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#viewer.Ui_MainWindow.show_photon" title="Link to this definition"></a></dt>
+<dd><p>Shows the photon on the screen.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>This method does not return anything.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viewer.Ui_MainWindow.visualize_vector">
+<span class="sig-name descname"><span class="pre">visualize_vector</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#viewer.Ui_MainWindow.visualize_vector" title="Link to this definition"></a></dt>
+<dd><p>Vizualizes a given vector of entries in a table.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>vector</strong> (<em>numpy.ndarray</em>) – The vector of entires to be visualized.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>This method does not return anything.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viewer.VLine">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viewer.</span></span><span class="sig-name descname"><span class="pre">VLine</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viewer.VLine" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">QFrame</span></code></p>
+<p>A line that spans the entire window vertically, regardless of the window’s size.</p>
+<p>This class inherits from <code class="docutils literal notranslate"><span class="pre">QFrame</span></code> and modifies the properties to produce a line.
+It adds to extra attributes or methods to those originally inherited from <cite>QFrame</cite>.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viewer.VSpacer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viewer.</span></span><span class="sig-name descname"><span class="pre">VSpacer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viewer.VSpacer" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">QSpacerItem</span></code></p>
+<p>A vertical spacer that extends maximally within a widget.</p>
+<p>It takes up a maximal vertical space, aligning items above it at the top of the container and items beneath it at the bottom of the container.
+It inherits from <code class="docutils literal notranslate"><span class="pre">QSpacerItem</span></code> and adds no extra attributes or methods to it.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viewer.VectorWindow">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viewer.</span></span><span class="sig-name descname"><span class="pre">VectorWindow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viewer.VectorWindow" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">QWidget</span></code></p>
+<p>A table to visualize a vector’s entires within a window.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Variables<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>table</strong> (<em>QTableWidget</em>) – A table of vector’s enties.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="viewer.rotate_icon">
+<span class="sig-prename descclassname"><span class="pre">viewer.</span></span><span class="sig-name descname"><span class="pre">rotate_icon</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">icon</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">QIcon</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">QIcon</span></span></span><a class="headerlink" href="#viewer.rotate_icon" title="Link to this definition"></a></dt>
+<dd><p>Rtotates an icon with a given angle</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>icon</strong> (<em>QIcon</em>) – The icon intended to be rotated.</p></li>
+<li><p><strong>angle</strong> (<em>int</em>) – The amount of rotation in degrees. Takes an integer value from 0 to 360 degrees.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The icon after applying rotation.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viewer.tool">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viewer.</span></span><span class="sig-name descname"><span class="pre">tool</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">type</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viewer.tool" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">QPushButton</span></code></p>
+<p>A generic tool element of the left toolbar.</p>
+<p>Inherits from <code class="docutils literal notranslate"><span class="pre">QPushButton</span></code> to achieve the clickable appearance, but provides no action on clicking.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viewer.tool.compType">
+<span class="sig-name descname"><span class="pre">compType</span></span><a class="headerlink" href="#viewer.tool.compType" title="Link to this definition"></a></dt>
+<dd><p>The type of the component the tool represents (e.g. LASER, BEAMSPLITTER, etc.).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viewer.tool.mouseMoveEvent">
+<span class="sig-name descname"><span class="pre">mouseMoveEvent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">QMouseEvent</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viewer.tool.mouseMoveEvent" title="Link to this definition"></a></dt>
+<dd><p>Overrides the mouse movement event inherited from <code class="docutils literal notranslate"><span class="pre">QPushButton</span></code> to achieve the drag and drop functionality for <code class="docutils literal notranslate"><span class="pre">tool</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>event</strong> (<em>QMouseEvent</em>) – Provides information about a mouse movement event, such as the position of the mouse pointer, button states, and modifiers (e.g., Shift or Ctrl keys).</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>This method does not return anything.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="test.html" class="btn btn-neutral float-left" title="test module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Quantum Communications &amp; Cryptography Lab.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

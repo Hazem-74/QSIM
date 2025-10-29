@@ -1,0 +1,371 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>model module &mdash; Quantum Optics Simulator 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=2709fde1"></script>
+      <script src="_static/doctools.js?v=9a2dae69"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="test module" href="test.html" />
+    <link rel="prev" title="control module" href="control.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Quantum Optics Simulator
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">QSim</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="control.html">control module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">model module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#model.Graph"><code class="docutils literal notranslate"><span class="pre">Graph</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#model.Graph.add_connection"><code class="docutils literal notranslate"><span class="pre">Graph.add_connection()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#model.Graph.add_element"><code class="docutils literal notranslate"><span class="pre">Graph.add_element()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#model.Graph.calculate_results"><code class="docutils literal notranslate"><span class="pre">Graph.calculate_results()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#model.Operation"><code class="docutils literal notranslate"><span class="pre">Operation</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#model.Operation.apply_operation_on_state"><code class="docutils literal notranslate"><span class="pre">Operation.apply_operation_on_state()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#model.Operation.cascade_operation"><code class="docutils literal notranslate"><span class="pre">Operation.cascade_operation()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#model.Operation.modify_to_beam_splitter"><code class="docutils literal notranslate"><span class="pre">Operation.modify_to_beam_splitter()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#model.State"><code class="docutils literal notranslate"><span class="pre">State</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#model.State.from_path_modes"><code class="docutils literal notranslate"><span class="pre">State.from_path_modes()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#model.State.from_state_vector"><code class="docutils literal notranslate"><span class="pre">State.from_state_vector()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#model.State.get_dimension"><code class="docutils literal notranslate"><span class="pre">State.get_dimension()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#model.State.get_state_vector"><code class="docutils literal notranslate"><span class="pre">State.get_state_vector()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#model.is_power_of_two"><code class="docutils literal notranslate"><span class="pre">is_power_of_two()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="test.html">test module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="viewer.html">viewer module</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Quantum Optics Simulator</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="modules.html">QSim</a></li>
+      <li class="breadcrumb-item active">model module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/model.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-model">
+<span id="model-module"></span><h1>model module<a class="headerlink" href="#module-model" title="Link to this heading"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="model.Graph">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">model.</span></span><span class="sig-name descname"><span class="pre">Graph</span></span><a class="headerlink" href="#model.Graph" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">MultiDiGraph</span></code></p>
+<p>The graph class responsible for the computations and visualization of the optical system.</p>
+<p>Inherits from <code class="xref py py-class docutils literal notranslate"><span class="pre">networkx.MultiDiGraph</span></code></p>
+<dl class="field-list simple">
+<dt class="field-odd">Variables<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>counts</strong> (<em>collections.defaultdict</em>) – A dictionary that stores the counts of optical elements of each type (e.g. Laser, Beamsplitter, etc.).</p></li>
+<li><p><strong>elements</strong> (<em>collections.defaultdict</em>) – A dictionary that stores the optical elements by type (e.g. Laser, Beamsplitter, etc.).</p></li>
+<li><p><strong>path_modes_count</strong> (<em>int</em>) – stores the total number of distinct path modes within the optical system.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="model.Graph.add_connection">
+<span class="sig-name descname"><span class="pre">add_connection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">from_element</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="viewer.html#viewer.GridItem" title="viewer.GridItem"><span class="pre">GridItem</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">to_element</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="viewer.html#viewer.GridItem" title="viewer.GridItem"><span class="pre">GridItem</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#model.Graph.add_connection" title="Link to this definition"></a></dt>
+<dd><p>Adds a new node for each of the two given grid elements then adds a directed connection (directed graph edge) between the two nodes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>from_element</strong> (<a class="reference internal" href="viewer.html#viewer.GridItem" title="viewer.GridItem"><em>GridItem</em></a>) – The element whose node shall be the start of the directed edge.</p></li>
+<li><p><strong>to_element</strong> (<a class="reference internal" href="viewer.html#viewer.GridItem" title="viewer.GridItem"><em>GridItem</em></a>) – The element whose node shall be the end of the directed edge.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>This method does not return anything.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="model.Graph.add_element">
+<span class="sig-name descname"><span class="pre">add_element</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">element</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="viewer.html#viewer.GridItem" title="viewer.GridItem"><span class="pre">GridItem</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#model.Graph.add_element" title="Link to this definition"></a></dt>
+<dd><p>Adds an optical element from the grid to the graph.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>element</strong> (<a class="reference internal" href="viewer.html#viewer.GridItem" title="viewer.GridItem"><em>GridItem</em></a>) – The grid element to be added.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Returns the id of the graph node corresponding to the added element.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="model.Graph.calculate_results">
+<span class="sig-name descname"><span class="pre">calculate_results</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">visualize</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#model.Graph.calculate_results" title="Link to this definition"></a></dt>
+<dd><p>Simulates the graph built from the systems of optical elements.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>visualize</strong> (<em>bool</em>) – Determines whether to visualize the graph before building it or not.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Returns the state vector of the final state of the system.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>numpy.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="model.Operation">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">model.</span></span><span class="sig-name descname"><span class="pre">Operation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dimension</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#model.Operation" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Represents an operation that shall be applied on quantum states.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Variables<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>matrix</strong> (<em>numpy.ndarray</em>) – The matrix operation that shall be applied on the state vector.</p></li>
+<li><p><strong>dimension</strong> (<em>int</em>) – The dimension of the identity matrix</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="model.Operation.apply_operation_on_state">
+<span class="sig-name descname"><span class="pre">apply_operation_on_state</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">in_state</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#model.State" title="model.State"><span class="pre">State</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#model.State" title="model.State"><span class="pre">State</span></a></span></span><a class="headerlink" href="#model.Operation.apply_operation_on_state" title="Link to this definition"></a></dt>
+<dd><p>This method takes an input quantum state, applie the operation on it, and returns the output quantum state.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>in_state</strong> (<a class="reference internal" href="#model.State" title="model.State"><em>State</em></a>) – The input quantum state on which the operation shall be applied.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Returns the output quantum state.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#model.State" title="model.State">State</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="model.Operation.cascade_operation">
+<span class="sig-name descname"><span class="pre">cascade_operation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other_operation</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#model.Operation" title="model.Operation"><span class="pre">Operation</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#model.Operation.cascade_operation" title="Link to this definition"></a></dt>
+<dd><p>Creates a new quantum operation by cascading a new operation to the currently stored one.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>other_operation</strong> (<a class="reference internal" href="#model.Operation" title="model.Operation"><em>Operation</em></a>) – The operation that shall be cascaded to the current operation.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>This method does not return anything.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="model.Operation.modify_to_beam_splitter">
+<span class="sig-name descname"><span class="pre">modify_to_beam_splitter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">in1</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">in2</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out1</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out2</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#model.Operation.modify_to_beam_splitter" title="Link to this definition"></a></dt>
+<dd><p>Modifies the current operation to be a beam splitter operation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>in1</strong> (<em>int</em>) – The first input mode of the beamsplitter.</p></li>
+<li><p><strong>in2</strong> (<em>int</em>) – The second input mode of the beamsplitter.</p></li>
+<li><p><strong>out1</strong> (<em>int</em>) – The first output mode of the beamsplitter.</p></li>
+<li><p><strong>out2</strong> (<em>int</em>) – The second input mode of the beamsplitter.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>This method does not return anything.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="model.State">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">model.</span></span><span class="sig-name descname"><span class="pre">State</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state_vector</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#model.State" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Represents a quantum state of the system.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Variables<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>state_vector</strong> (<em>numpy.ndarray</em>) – The state vector of the system. It is a vector of amplitudes of the computational states.</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="model.State.from_path_modes">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_path_modes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dimension</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#model.State" title="model.State"><span class="pre">State</span></a></span></span><a class="headerlink" href="#model.State.from_path_modes" title="Link to this definition"></a></dt>
+<dd><p>Creates a <a class="reference internal" href="#model.State" title="model.State"><code class="xref py py-class docutils literal notranslate"><span class="pre">State</span></code></a> in the all-zeros state with a given dimension.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>dimension</strong> (<em>int</em>) – The dimension of the state.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Returns an all-zeros <a class="reference internal" href="#model.State" title="model.State"><code class="xref py py-class docutils literal notranslate"><span class="pre">State</span></code></a> instance (|00…00&gt;) with the given dimension.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="model.State.from_state_vector">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_state_vector</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state_vector</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#model.State" title="model.State"><span class="pre">State</span></a></span></span><a class="headerlink" href="#model.State.from_state_vector" title="Link to this definition"></a></dt>
+<dd><p>Creates a <a class="reference internal" href="#model.State" title="model.State"><code class="xref py py-class docutils literal notranslate"><span class="pre">State</span></code></a> instance from a given state vector</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>state_vector</strong> (<em>numpy.ndarray</em>) – A numpy array containing the values of the vector.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Returns a <a class="reference internal" href="#model.State" title="model.State"><code class="xref py py-class docutils literal notranslate"><span class="pre">State</span></code></a> instance initialized with the given state vector.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#model.State" title="model.State">State</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="model.State.get_dimension">
+<span class="sig-name descname"><span class="pre">get_dimension</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="headerlink" href="#model.State.get_dimension" title="Link to this definition"></a></dt>
+<dd><p>A getter method for the dimension of the state vector. This dimension represents the number of orthonormal computational basis states.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Returns the dimension of the stored state vector</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="model.State.get_state_vector">
+<span class="sig-name descname"><span class="pre">get_state_vector</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#model.State.get_state_vector" title="Link to this definition"></a></dt>
+<dd><p>A getter method of the state vector stored by the state.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Returns the state vector in the form of a numpy array.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>numpy.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="model.is_power_of_two">
+<span class="sig-prename descclassname"><span class="pre">model.</span></span><span class="sig-name descname"><span class="pre">is_power_of_two</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#model.is_power_of_two" title="Link to this definition"></a></dt>
+<dd><p>Checks if a given integer is a power of 2.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>n</strong> (<em>int</em>) – The integer to be checked.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if the integer is a power of 2, otherwise returns <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="control.html" class="btn btn-neutral float-left" title="control module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="test.html" class="btn btn-neutral float-right" title="test module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Quantum Communications &amp; Cryptography Lab.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
